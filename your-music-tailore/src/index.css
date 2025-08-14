@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: HelveticaRegular;
+  src: url("./assets/Helvetica.ttf");
+}
+
+@theme{
+  --font-helveticaregular: helveticaregular, "serif"
+}
+
 :root {
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
