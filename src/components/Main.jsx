@@ -114,6 +114,15 @@ export default function Main() {
   }
 
   async function getSong() {
+    if(userGenreList.length===0){
+      alert('Please put in a genere, or choose "Surprise Me"');
+      return;
+    }
+
+    if(emotionsList.length===0){
+      alert('Please put in your mood, or moods')
+    }
+
     setIsLoading(true);
     try {
       const songMarkdown = await getSongFromClaude(
@@ -184,7 +193,7 @@ export default function Main() {
                       hideMenu();
                     }}
                   >
-                    <div>💭 HOW ARE YOU FEELING TODAY? </div>
+                    <div>💭 WHAT'S THE MOOD TODAY? </div>
 
                     <div>˅</div>
                   </h1>
@@ -234,7 +243,7 @@ export default function Main() {
               <div className="w-full backdrop-blur-sm bg-black/30 rounded-2xl border border-green-400/50 shadow-2xl shadow-green-500/20 relative z-0">
                 <div className="p-4 bg-gradient-to-r from-green-500/80 to-teal-500/80 backdrop-blur-md rounded-t-2xl">
                   <h2 className="font-bold text-[14px] text-white">
-                    🎤 SIMILAR ARTIST
+                    🎤 LOOKING FOR AN ARTIST SIMILAR TO...
                   </h2>
                 </div>
 
