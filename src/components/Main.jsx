@@ -43,7 +43,7 @@ const emotions = [
 ];
 
 export default function Main() {
-  const [userGenreList, setUserGenreList] = useState([]);
+  const [userGenreList, setUserGenreList] = useState(["Surprise Me!"]);
   const [emotionsList, setEmotionsList] = useState([]);
   const [similarArtistInput, setSimilarArtistInput] = useState("");
   const [similarArtist, setSimilarArtist] = useState("");
