@@ -4,7 +4,7 @@ You are a music connoisseur that gives users song recommendations. You receive a
 `
 
 const anthropic = new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY,
+    apiKey: import.meta.env.ANTHROPIC_API_KEY,
     dangerouslyAllowBrowser: true,
 })
 
