@@ -43,7 +43,7 @@ export default async function handler(req, res) {
         prompt += " Please give me a song you'd recommend I listen to!";
 
         const msg = await anthropic.messages.create({
-            model: "claude-3-5-sonnet-20241022",
+            model: "claude-3-7-sonnet-20250219",
             max_tokens: 1024,
             system: SYSTEM_PROMPT,
             messages: [
