@@ -3,6 +3,8 @@
 :root {
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  margin:0px;
+  padding: 0px !important;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

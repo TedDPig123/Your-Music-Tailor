@@ -1,6 +1,6 @@
 import { useState } from "react";
 import GenreList from "./GenrelList";
-import EmotionsList from "./EmotionsList";
+import EmotionsList from "./EmotionsList"
 
 const musicGenres = [
  "Surprise Me!",
@@ -41,45 +41,25 @@ const emotions = [
 
 export default function Main(){
     const [userGenreList, setUserGenreList] = useState([]);
-    const [emotionsList,setEmotionsList] = useState(emotions);
+    const [emotionsList,setEmotionsList] = useState([]);
 
     function hideMenu(){
         const menu = document.querySelector(".dropdown-content");
-        const button = document.querySelector(".genre-button");
-
-        button.classList.remove("border-black");
-        button.classList.add("border-white");
-
         menu.classList.add("hidden");
     }
 
     function showMenu(){
         const menu = document.querySelector(".dropdown-content");
-        const button = document.querySelector(".genre-button");
-
-        button.classList.remove("border-white");
-        button.classList.add("border-black");
-
         menu.classList.remove("hidden");
     }
 
     function hideEmotions(){
         const menu = document.querySelector(".emotions-content");
-        const button = document.querySelector(".emotions-button");
-
-        button.classList.remove("border-black");
-        button.classList.add("border-white");
-
         menu.classList.add("hidden");
     }
 
     function showEmotions(){
         const menu = document.querySelector(".emotions-content");
-        const button = document.querySelector(".emotions-button");
-
-        button.classList.remove("border-white");
-        button.classList.add("border-black");
-
         menu.classList.remove("hidden");
     }
 
@@ -113,16 +93,63 @@ export default function Main(){
     }
 
     return(
-    <div>         
-        <div id="genre-dropdown" className="relative flex flex-col w-fill bg-white text-black items-start text-[20px] cursor-pointer">             
-            <h1 className="genre-button w-full text-start p-2 border-2 border-white" onClick={showMenu}>Select Genre(s)</h1>             
-            <div className="dropdown-content hidden absolute top-full left-0 w-full bg-white border border-gray-300 shadow-lg z-50">                 
-                {musicGenres.map(genre =>                 
-                    (<div key={genre} id={genre} className="hover:bg-gray-500 w-full text-start p-2" onClick={()=>{toggleMusicTag(genre);hideMenu()}}>{genre}</div>)                 
-                )}             
-            </div>         
-        </div>          
-        <GenreList list={userGenreList} toggleHandler={toggleMusicTag}/>
-        <EmotionsList list={emotions} toggleHandler={toggleEmotionsTag}/>
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-pink-900 p-8 relative">
+        <div className="max-w-2xl mx-auto">
+            <div className="space-y-8">
+                <div className="backdrop-blur-sm bg-black/30 rounded-2xl border border-cyan-400/50 shadow-2xl shadow-cyan-500/20">
+                    <div id="genre-dropdown" className="relative flex flex-col w-full text-white items-start text-[20px] cursor-pointer">             
+                        <h1 className="genre-button w-full text-start p-6 border-2 bg-gradient-to-r from-pink-500/80 to-cyan-500/80 backdrop-blur-md rounded-t-2xl font-bold text-xl hover:shadow-lg" 
+                            onClick={()=>{showMenu();hideEmotions()}}>
+                            🎵 SELECT GENRE(S) 
+                        </h1>             
+                        <div className="dropdown-content hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-md border-2 border-cyan-400/50 shadow-2xl shadow-cyan-500/30 z-50 rounded-b-2xl overflow-hidden">                 
+                            {musicGenres.map(genre =>                 
+                                (<div key={genre} 
+                                      id={genre} 
+                                      className="hover:bg-gradient-to-r hover:from-pink-500/50 hover:to-cyan-500/50 w-full text-start p-4 transition-all duration-300 border-b border-cyan-400/20 last:border-b-0 font-medium hover:text-cyan-300 hover:shadow-inner" 
+                                      onClick={()=>{toggleMusicTag(genre);hideMenu()}}>
+                                    {genre}
+                                </div>)                 
+                            )}             
+                        </div>         
+                    </div>
+                    <GenreList list={userGenreList} toggleHandler={toggleMusicTag}/>
+                </div>
+
+                <div className="backdrop-blur-sm bg-black/30 rounded-2xl border border-purple-400/50 shadow-2xl shadow-purple-500/20">
+                    <div id="emotions-dropdown" className="relative flex flex-col w-full text-white items-start text-[20px] cursor-pointer">             
+                        <h1 className="emotions-button w-full text-start p-6 border-2 bg-gradient-to-r from-purple-500/80 to-pink-500/80 backdrop-blur-md rounded-t-2xl font-bold text-xl hover:shadow-lg" 
+                            onClick={()=>{showEmotions();hideMenu()}}>
+                            💭 HOW ARE YOU FEELING TODAY?
+                        </h1>             
+                        <div className="emotions-content hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-md border-2 border-purple-400/50 shadow-2xl shadow-purple-500/30 z-50 rounded-b-2xl overflow-hidden">                 
+                            {emotions.map(emotion =>                 
+                                (<div key={emotion} 
+                                      id={emotion} 
+                                      className="hover:bg-gradient-to-r hover:from-purple-500/50 hover:to-pink-500/50 w-full text-start p-4 transition-all duration-300 border-b border-purple-400/20 last:border-b-0 font-medium hover:text-purple-300 hover:shadow-inner capitalize" 
+                                      onClick={()=>{toggleEmotionsTag(emotion);hideEmotions()}}>
+                                    {emotion}
+                                </div>)                 
+                            )}             
+                        </div>         
+                    </div> 
+                    <EmotionsList list={emotionsList} toggleHandler={toggleEmotionsTag}/>
+                </div>
+            </div>
+
+            <div className="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+                <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+            </div>
+
+            <div 
+                className="fixed inset-0 opacity-5 pointer-events-none"
+                style={{
+                    backgroundImage: `linear-gradient(cyan 1px, transparent 1px), linear-gradient(90deg, cyan 1px, transparent 1px)`,
+                    backgroundSize: '50px 50px'
+                }}
+            ></div>
+        </div>
     </div>)
 }

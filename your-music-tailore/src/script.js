@@ -4,13 +4,23 @@ function hideMenu(){
     menu.classList.add("hidden");
 }
 
+function hideEmotions(){
+    const menu = document.querySelector(".emotions-content");
+    menu.classList.add("hidden");
+}
+
 document.addEventListener('click', function(event) {
     const menu = document.getElementById("genre-dropdown");
+    const emotionsMenu = document.getElementById("emotions-dropdown");
 
     if (!menu.contains(event.target)) {
         hideMenu();
-                    console.log('Clicked outside the container!');
-
     }
+
+    if (!emotionsMenu.contains(event.target)) {
+        hideEmotions();
+    }
+
+
 });
 
